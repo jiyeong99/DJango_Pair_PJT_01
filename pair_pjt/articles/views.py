@@ -24,11 +24,24 @@ def create(request):
 
 
 def new(request):
+
+    return render(request,'articles/new.html')
+
+def edit(request,pk):
+    review = Review.objects.get(pk=pk)
+    context = {
+        "review" : review,
+    }
+    return render(request,'articles/edit.html', context)
+
+def update(request,pk):
+    review = Review.objects.get(pk=pk)
     title = request.GET.get('title')
     content = request.GET.get('content')
+    review.title = title
+    review.content = content
     context = {
         "title" : title,
         "content" : content,
     }
-    return render(request,'articles/new.html', context)
-
+    return render(request,'articles/edit.html')
