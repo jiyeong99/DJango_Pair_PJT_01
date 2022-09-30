@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>index.html</h1>
+<ul>
+    {% for review in reviews %}
+    <li>
+        title : {{ review.title }}<br>
+        content : {{ review.content }}<br>
+        creqted_at : {{ review.created_at }}<br>
+        update_at : {{ review.updated_at }}<br>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
