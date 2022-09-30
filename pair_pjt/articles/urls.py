@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('create/',views.create, name='create'),
     path('new/',views.new, name='new'),
-    path('edit/<int:pk>',views.edit, name='edit'),
-    path('update/<int:pk>', views.update, name="update"),
+    path('edit/<int:pkk>', views.edit, name='edit'),
+
+    # path('update/<int:pk>', views.update, name="update"),
 ]

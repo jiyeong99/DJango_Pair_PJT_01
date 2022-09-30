@@ -27,21 +27,22 @@ def new(request):
 
     return render(request,'articles/new.html')
 
-def edit(request,pk):
-    review = Review.objects.get(pk=pk)
-    context = {
-        "review" : review,
-    }
-    return render(request,'articles/edit.html', context)
+def edit(request,pkk):
+    review = Review.objects.get(id=pkk)
 
-def update(request,pk):
-    review = Review.objects.get(pk=pk)
-    title = request.GET.get('title')
-    content = request.GET.get('content')
-    review.title = title
-    review.content = content
     context = {
-        "title" : title,
-        "content" : content,
+        "review":review,
     }
-    return render(request,'articles/edit.html')
+    return render(request,'articles/edit.html',context)
+
+
+# def update(request):
+#     review = Review.objects.get
+#     title = request.GET.get('title')
+#     content = request.GET.get('content')
+#     review.title = title
+#     review.content = content
+#     review.save()
+
+#     return render(request,'articles/index.html')
+
