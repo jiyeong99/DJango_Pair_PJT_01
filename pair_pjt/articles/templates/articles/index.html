@@ -2,7 +2,7 @@
 {% block content %}
 <h1>index.html</h1>
 <a href="{% url 'articles:new' %}">리뷰 작성</a>
-<ul>
+<!-- <ul>
     {% for review_for in reviews %}
     <li>
         id : {{ review_for.id }}
@@ -10,5 +10,26 @@
         || created_at : {{ review_for.created_at }} 
     </li>
         {% endfor %}
-</ul>
+</ul> -->
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">title</th>
+        <th scope="col">생성일자</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for review_for in reviews %}
+      <tr>
+        <th scope="row">{{ review_for.id }}</th>
+        <td><a href="{% url 'articles:detail' review_for.pk %}"> {{ review_for.title}}</td>
+        <td>{{ review_for.created_at }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
 {% endblock content %}
