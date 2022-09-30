@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>detail.html</h1>
+{{ review.pk }}
+<p>제목 : {{ review.title }}</p>
+<p>내용 : {{ review.content }}</p>
+<p>생성일자 : {{ review.created_at }}</p>
+<p>수정일자 : {{ review.updated_at }}</p>
+<a href="{% url 'articles:edit' review.pk %}">리뷰 수정</a>
+<a href="{% url 'articles:delete' review.pk %}">리뷰 삭제</a>
+<a href="{% url 'articles:index' %}">홈</a>
+
+{% endblock content %}

@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from .models import Review
 from pair_pjt.settings import BASE_DIR
@@ -24,25 +25,36 @@ def create(request):
 
 
 def new(request):
-
     return render(request,'articles/new.html')
 
-def edit(request,pkk):
-    review = Review.objects.get(id=pkk)
+def detail(request,pkk):
+    review = Review.objects.get(pk = pkk)
+    context = {
+        'review' : review,
+    }
+    return render(request, 'articles/detail.html', context)
 
+def edit(request,pkk):
+    review = Review.objects.get(pk=pkk)
     context = {
         "review":review,
     }
     return render(request,'articles/edit.html',context)
 
+def update(request,pkk):
+    review = Review.objects.get(pk=pkk)
 
-# def update(request):
-#     review = Review.objects.get
-#     title = request.GET.get('title')
-#     content = request.GET.get('content')
-#     review.title = title
-#     review.content = content
-#     review.save()
+    u_title = request.GET.get('title')
+    u_content = request.GET.get('content')
 
-#     return render(request,'articles/index.html')
+    review.title = u_title
+    review.content = u_content
+    review.save()
+
+    return redirect('articles:detail', review.pk)
+
+def delete(request, pk):
+    Review.objects.get(pk=pk).delete()
+    return redirect('articles:index')
+
 

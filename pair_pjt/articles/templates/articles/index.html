@@ -1,17 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>index.html</h1>
-<ul>
-    {% for review in reviews %}
-    <li>
-        title : {{ review.title }}<br>
-        content : {{ review.content }}<br>
-        creqted_at : {{ review.created_at }}<br>
-        update_at : {{ review.updated_at }}<br>
-    </li>
-    {% endfor %}
-</ul>
 <a href="{% url 'articles:new' %}">리뷰 작성</a>
-
-
+<ul>
+    {% for review_for in reviews %}
+    <li>
+        id : {{ review_for.id }}
+        || <a href="{% url 'articles:detail' review_for.pk %}"> {{ review_for.title}} </a> 
+        || created_at : {{ review_for.created_at }} 
+    </li>
+        {% endfor %}
+</ul>
 {% endblock content %}
